@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Div Toggle</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            height: 100vh;
+        }
+
+        #fullscreenDiv {
+            background-color: red;
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        #fullscreenButton {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #content {
+            padding: 10px;
+        }
+
+        #backgroundDiv {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="fullscreenDiv ">
+            <button id="fullscreenButton" onclick="toggleFullScreen()">Fullscreen</button>
+            <div id="content">
+                <input type="text" placeholder="Enter something...">
+            </div>
+        </div>
+    </div>
+    <div id="backgroundDiv" onclick="toggleFullScreen()"></div>
+    <script>
+        function toggleFullScreen() {
+            const fullscreenDiv = document.getElementById('fullscreenDiv');
+            const backgroundDiv = document.getElementById('backgroundDiv');
+
+            if (fullscreenDiv.style.width === '100%') {
+                // Exit full screen
+                fullscreenDiv.style.width = '100%';
+                backgroundDiv.style.display = 'none';
+                document.getElementById('fullscreenButton').textContent = 'Fullscreen';
+            } else {
+                // Enter full screen
+                fullscreenDiv.style.width = '100%';
+                backgroundDiv.style.display = 'block';
+                document.getElementById('fullscreenButton').textContent = 'Exit Fullscreen';
+            }
+        }
+    </script>
+</body>
+</html>
